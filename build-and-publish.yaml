@@ -8,6 +8,7 @@
       git:
         repo: https://github.com/msekandi/ABC-Technologies.git
         dest: /tmp/ABC-Technologies
+      become: true
 
     - name: Build Docker Image
       command: "docker build -t msekandi/abctechnologies-latest -f /tmp/ABC-Technologies/Dockerfile /tmp/ABC-Technologies"
