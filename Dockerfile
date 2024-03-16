@@ -1,13 +1,18 @@
-FROM docker.io/library/ubuntu:18.04
+FROM ubuntu:18.04
 
-RUN apt-get -y update
-RUN apt-get -y install openjdk-8-jdk openjdk-11-jdk wget
+# Install JDK and wget
+RUN apt-get update && \
+    apt-get install -y openjdk-8-jdk openjdk-11-jdk wget && \
+    rm -rf /var/lib/apt/lists/*
 
-RUN wget https://archive.apache.org/dist/tomcat/tomcat-8/v8.5.55/bin/apache-tomcat-8.5.55.tar.gz -O /tmp/tomcat.tar.gz
-RUN cd /tmp && tar xvfz tomcat.tar.gz
-RUN mv /tmp/apache-tomcat-8.5.55 /opt/tomcat
+# Download and install Apache Tomcat
+RUN wget https://archive.apache.org/dist/tomcat/tomcat-8/v8.5.55/bin/apache-tomcat-8.5.55.tar.gz -O /tmp/tomcat.tar.gz && \
+    cd /tmp && \
+    tar xvfz tomcat.tar.gz && \
+    mv /tmp/apache-tomcat-8.5.55 /opt/tomcat
 
+# Copy the WAR file to the Tomcat webapps directory
 COPY target/ABCtechnologies-1.0.war /opt/tomcat/webapps/
 
-EXPOSE 9090
-CMD /opt/tomcat/bin/catalina.sh run
+# Expose Tomcat port
+EXPOSE 8080
