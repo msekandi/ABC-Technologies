@@ -1,0 +1,46 @@
+---
+- name: Deploy Docker image to Kubernetes
+  hosts: kubernetes_cluster
+  tasks:
+    - name: Deploy Kubernetes Deployment
+      k8s:
+        state: present
+        definition:
+          apiVersion: apps/v1
+          kind: Deployment
+          metadata:
+            name: abc-technologies-deployment
+            labels:
+              app: abc-technologies
+          spec:
+            replicas: 3  # Adjust the number of replicas as needed
+            selector:
+              matchLabels:
+                app: abc-technologies
+            template:
+              metadata:
+                labels:
+                  app: abc-technologies
+              spec:
+                containers:
+                  - name: abc-technologies-container
+                    image: msekandi/abctechnologies-latest
+                    ports:
+                      - containerPort: 8080  # Adjust the port if needed
+    - name: Deploy Kubernetes Service
+      k8s:
+        state: present
+        definition:
+          apiVersion: v1
+          kind: Service
+          metadata:
+            name: abc-technologies-service
+            labels:
+              app: abc-technologies
+          spec:
+            ports:
+              - port: 80  # Expose the service on port 80
+                targetPort: 8080  # Target the container port
+            selector:
+              app: abc-technologies
+            type: LoadBalancer  # Expose the service externally
