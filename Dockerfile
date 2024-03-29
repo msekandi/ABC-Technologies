@@ -12,7 +12,7 @@ RUN wget https://archive.apache.org/dist/tomcat/tomcat-8/v8.5.55/bin/apache-tomc
     mv /tmp/apache-tomcat-8.5.55 /opt/tomcat
 
 # Copy the WAR file to the Tomcat webapps directory
-COPY target/ABCtechnologies-1.0.war /opt/tomcat/webapps/
+COPY ABCtechnologies-1.0.war /opt/tomcat/webapps/
 
 # Expose Tomcat port
 EXPOSE 8080
