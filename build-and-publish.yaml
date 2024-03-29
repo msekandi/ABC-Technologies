@@ -5,7 +5,7 @@
 
   tasks:
     - name: Build Docker Image
-      command: "docker build -t msekandi/abctechnologies-latest -f /tmp/ABC-Technologies/Dockerfile /root/jenkins/workspace/ABC-Technologies/target"
+      command: "docker build -t msekandi/abctechnologies-latest -f /tmp/ABC-Technologies/Dockerfile /root/jenkins/workspace/ABC-Technologies"
 
     - name: Push to Docker Hub
       command: >
