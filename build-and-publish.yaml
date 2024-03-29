@@ -1,6 +1,6 @@
 ---
 - name: Build and Publish Docker Image
-  hosts: web1
+  hosts: kubernetes_cluster
   gather_facts: false
 
   tasks:
