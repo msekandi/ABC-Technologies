@@ -1,6 +1,6 @@
 ---
 - name: Deploy Docker image to Kubernetes
-  hosts: kubernetes_cluster
+  hosts: web1
   tasks:
     - name: Deploy Kubernetes Deployment
       k8s:
@@ -24,7 +24,7 @@
               spec:
                 containers:
                   - name: abc-technologies-container
-                    image: msekandi/abctechnologies-latest
+                    image: msekandi/abctechnologies-latest-with-ansible
                     ports:
                       - containerPort: 8080  # Adjust the port if needed
     - name: Deploy Kubernetes Service
@@ -43,4 +43,4 @@
                 targetPort: 8080  # Target the container port
             selector:
               app: abc-technologies
-            type: LoadBalancer  # Expose the service externally
+            type: LoadBalancer  # Expose the service
