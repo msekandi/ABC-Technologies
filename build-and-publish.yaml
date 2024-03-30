@@ -5,11 +5,15 @@
 
   tasks:
     - name: Build Docker Image
-      command: "docker build -t msekandi/abctechnologies-latest -f /tmp/ABC-Technologies/Dockerfile /root/jenkins/workspace/ABC-Technologies"
+      command: "docker build -t msekandi/abctechnologies-latest-with-ansible -f /tmp/ABC-Technologies/Dockerfile /root/jenkins/workspace/ABC-Technologies"
+
+    - name: Log in to Docker Hub
+      shell: "docker login -u {{ docker_username }} -p {{ docker_password }}"
+      register: docker_login_result
+      ignore_errors: yes
 
     - name: Push to Docker Hub
-      command: >
-        docker login -u "{{ docker_username }}" -p "{{ docker_password }}" &&
-        docker push msekandi/abctechnologies-latest
+      shell: "docker push msekandi/abctechnologies-latest-with-ansible"
       environment:
         DOCKER_CLI_AGGREGATE: "1"
+      when: docker_login_result is success
