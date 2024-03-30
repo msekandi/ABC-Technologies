@@ -3,6 +3,7 @@
   hosts: web1
   vars:
     kubeconfig_path: "/root/.kube"
+    namespace: "default"
   tasks:
     - name: Deploy Kubernetes Deployment
       k8s:
