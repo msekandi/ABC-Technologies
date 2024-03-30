@@ -27,7 +27,7 @@
                     image: msekandi/abctechnologies-latest-with-ansible
                     ports:
                       - containerPort: 8080  # Adjust the port if needed
-      kubeconfig: /root/.kube  
+     
 
     - name: Deploy Kubernetes Service
       k8s:
@@ -46,4 +46,4 @@
             selector:
               app: abc-technologies
             type: LoadBalancer  # Expose the service
-      kubeconfig: /root/.kube   
+  
