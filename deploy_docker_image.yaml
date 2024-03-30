@@ -1,9 +1,6 @@
 ---
 - name: Deploy Docker image to Kubernetes
   hosts: web1
-  vars:
-    kubeconfig_path: "/root/.kube"
-    namespace: "abc-technologies"
   tasks:
     - name: Deploy Kubernetes Deployment
       k8s:
@@ -13,6 +10,7 @@
           kind: Deployment
           metadata:
             name: abc-technologies-deployment
+            namespace: abc-technologies  # Specify the namespace here
             labels:
               app: abc-technologies
           spec:
@@ -30,22 +28,3 @@
                     image: msekandi/abctechnologies-latest-with-ansible
                     ports:
                       - containerPort: 8080  # Adjust the port if needed
-     
-
-    - name: Deploy Kubernetes Service
-      k8s:
-        state: present
-        definition:
-          apiVersion: v1
-          kind: Service
-          metadata:
-            name: abc-technologies-service
-            labels:
-              app: abc-technologies
-          spec:
-            ports:
-              - port: 80  # Expose the service on port 80
-                targetPort: 8080  # Target the container port
-            selector:
-              app: abc-technologies
-            type: LoadBalancer  # Expose the service
