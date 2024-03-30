@@ -2,7 +2,7 @@
 - name: Deploy Docker image to Kubernetes
   hosts: web1
   vars:
-    kubeconfig_path: /root/.kube/config/
+    kubeconfig_path: "/root/.kube/config/"
   tasks:
     - name: Deploy Kubernetes Deployment
       k8s:
