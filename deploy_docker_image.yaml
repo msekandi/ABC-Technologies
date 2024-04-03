@@ -14,7 +14,7 @@
             labels:
               app: abc-technologies
           spec:
-            replicas: 3  # Adjust the number of replicas as needed
+            replicas: 1  # Adjust the number of replicas as needed
             selector:
               matchLabels:
                 app: abc-technologies
