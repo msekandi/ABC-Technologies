@@ -16,3 +16,6 @@ COPY /target/ABCtechnologies-1.0.war /opt/tomcat/webapps/
 
 # Expose Tomcat port
 EXPOSE 8080
+
+# Start Tomcat when the container starts
+CMD ["/opt/tomcat/bin/catalina.sh", "run"]
