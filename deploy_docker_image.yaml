@@ -30,8 +30,23 @@
                       - containerPort: 8085
                     resources:
                       limits:
-                        cpu: "1"
-                        memory: "512Mi"
+                        cpu: "1" # adjust accordingly
+                        memory: "512Mi" # adjust accordingly
                       requests:
-                        cpu: "500m"
-                        memory: "256Mi"
+                        cpu: "500m" # adjust accordingly
+                        memory: "256Mi" # adjust accordingly
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: abc-technologies-service
+  namespace: abc-technologies
+spec:
+  selector:
+    app: abc-technologies
+  ports:
+    - protocol: TCP
+      port: 8080  # Port exposed by your application container
+      targetPort: 8085  # Port your application is listening on
+      nodePort: 30000  # Choose an available port within the range 30000-32767
+  type: NodePort
