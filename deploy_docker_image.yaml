@@ -34,18 +34,21 @@
                       requests:
                         cpu: "500m" 
                         memory: "256Mi" 
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: abc-technologies-service
-  namespace: abc-technologies
-spec:
-  selector:
-    app: abc-technologies
-  ports:
-    - protocol: TCP
-      port: 8080  # Port exposed by your application container
-      targetPort: 8085  # Port your application is listening on
-      nodePort: 30000  # Choose an available port within the range 30000-32767
-  type: NodePort
+
+    - name: Deploy Kubernetes Service
+      k8s:
+        state: present
+        definition:
+          apiVersion: v1
+          kind: Service
+          metadata:
+            name: abc-technologies-service
+            namespace: abc-technologies
+          spec:
+            selector:
+              app: abc-technologies
+            ports:
+              - protocol: TCP
+                port: 8080  # Port exposed by your application container
+                targetPort: 8085  # Port your application is listening on
+            type: NodePort
