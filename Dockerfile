@@ -17,5 +17,11 @@ COPY /target/ABCtechnologies-1.0.war /opt/tomcat/webapps/
 # Expose Tomcat port
 EXPOSE 8080
 
+# Set user and group ownership for Tomcat directory
+RUN chown -R 1000:1000 /opt/tomcat
+
+# Switch to non-root user
+USER 1000
+
 # Start Tomcat when the container starts
 CMD ["/opt/tomcat/bin/catalina.sh", "run"]
