@@ -10,7 +10,6 @@
           kind: Deployment
           metadata:
             name: abc-technologies-deployment
-            namespace: abc-technologies  # Specify the namespace here
             labels:
               app: abc-technologies
           spec:
