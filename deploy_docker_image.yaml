@@ -50,5 +50,5 @@
             ports:
               - protocol: TCP
                 port: 8080  # Port exposed by your application container
-                targetPort: 8085  # Port your application is listening on
+                targetPort: 8080  # Port your application is listening on
             type: NodePort
