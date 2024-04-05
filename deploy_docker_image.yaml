@@ -25,7 +25,7 @@
               spec:
                 containers:
                   - name: abc-technologies-container
-                    image: msekandi/abctechnologies-latest-with-ansible
+                    image: msekandi/abctechnologies-latest
                     ports:
                       - containerPort: 8085
                     resources:
