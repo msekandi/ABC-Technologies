@@ -30,11 +30,11 @@
                       - containerPort: 8085
                     resources:
                       limits:
-                        cpu: "1" # adjust accordingly
-                        memory: "512Mi" # adjust accordingly
+                        cpu: "1" 
+                        memory: "512Mi" 
                       requests:
-                        cpu: "500m" # adjust accordingly
-                        memory: "256Mi" # adjust accordingly
+                        cpu: "500m" 
+                        memory: "256Mi" 
 ---
 apiVersion: v1
 kind: Service
