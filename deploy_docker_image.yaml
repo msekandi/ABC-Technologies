@@ -10,11 +10,11 @@
           kind: Deployment
           metadata:
             name: abc-technologies-deployment
-            namespace: abc-technologies  # Specify the namespace here
+            namespace: abc-technologies
             labels:
               app: abc-technologies
           spec:
-            replicas: 1  # Adjust the number of replicas as needed
+            replicas: 1
             selector:
               matchLabels:
                 app: abc-technologies
@@ -27,4 +27,11 @@
                   - name: abc-technologies-container
                     image: msekandi/abctechnologies-latest-with-ansible
                     ports:
-                      - containerPort: 8080  # Adjust the port if needed
+                      - containerPort: 8085
+                    resources:  # Add this resources section
+                      limits:
+                        memory: "256Mi"  # Adjust memory limit as needed
+                        cpu: "500m"       # Adjust CPU limit as needed
+                      requests:
+                        memory: "128Mi"  # Adjust memory request as needed
+                        cpu: "250m"       # Adjust CPU request as needed
